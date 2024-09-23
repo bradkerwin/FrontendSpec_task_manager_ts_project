@@ -1,4 +1,3 @@
-import React from 'react'
 import NavBar from './NavBar'
 import { Card, Button } from 'react-bootstrap'
 import AddNewTask from './AddNewTask'

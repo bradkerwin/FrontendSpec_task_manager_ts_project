@@ -3,6 +3,7 @@ import HomePage from "./components/HomePage";
 import ProfilePage from "./components/ProfilePage";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 import AddNewTask from "./components/AddNewTask";
+import ViewCurrentTasks from "./components/ViewCurrentTasks";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />}/>
           <Route path="/addnewtask" element={<AddNewTask />}/>
+          <Route path="/viewcurrenttasks" element={<ViewCurrentTasks />}/>
           <Route path="/profile" element={<AuthenticationGuard component={ProfilePage}/>}/>
         </Routes>
       </BrowserRouter>

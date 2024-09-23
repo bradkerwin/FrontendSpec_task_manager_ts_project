@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 interface Task {
@@ -7,15 +7,18 @@ interface Task {
 }
 
 const AddNewTask = () => {
-    const [task, setNewTask] = useState(' ')
+    const [task, setTask] = useState<Task | null>(null)
 
     const handleAddNewTask = () => {
         const newTask: Task = {
             name: "Walk the dog",
             description: "Walk the dog around the neighborhood for 20 minutes."
         }
-        setNewTask(newTask)
+        setTask(newTask)
     }
+    // const handleDeleteTask = () => {
+    //     setTask(null)
+    // }
 
   return (
     <>
