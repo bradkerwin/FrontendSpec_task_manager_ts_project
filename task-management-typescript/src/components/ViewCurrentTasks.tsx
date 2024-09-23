@@ -1,36 +1,43 @@
-import { useState } from 'react'
-import AddNewTask from './AddNewTask'
-import { Button, Card, CardText, CardTitle } from 'react-bootstrap'
+import { Card, Button } from "react-bootstrap";
 
 interface Task {
-    name: string,
-    description: string
+  name: string;
+  description: string;
 }
 
-const ViewCurrentTasks = () => {
-    const [displayTask, setDisplayTask] = useState<Task | null>(null)
+interface ViewCurrentTasksProps {
+  tasks: Task[];
+  deleteTask: (index: number) => void;
+  startEditingTask: (index: number) => void;
+}
 
-    const handleDisplayTask = () => {
-        const displayTask: Task = {
-            name: "Walk the dog",
-            description: "Walk the dog around the neighborhood for 20 minutes."
-        }
-        setDisplayTask(displayTask)
-    }
-
-    const handleDeleteTask = () => {
-        setDisplayTask(null)
-    }
-
+const ViewCurrentTasks = ({
+  tasks,
+  deleteTask,
+  startEditingTask,
+}: ViewCurrentTasksProps) => {
   return (
     <>
-        <Card>
-            <CardTitle>{displayTask?.name}</CardTitle>
-            <CardText>{displayTask?.description}</CardText>
-            <Button variant='danger' onClick={handleDeleteTask}>Delete Task</Button>
-        </Card>
+      {tasks.length > 0 ? (
+        tasks.map((task, index) => (
+          <Card className="mb-3" key={index}>
+            <Card.Body>
+              <Card.Title>{task.name}</Card.Title>
+              <Card.Text>{task.description}</Card.Text>
+              <Button className="m-1" variant="outline-warning" onClick={() => startEditingTask(index)}>
+                Edit
+              </Button>
+              <Button className="m-1" variant="outline-danger" onClick={() => deleteTask(index)}>
+                Delete
+              </Button>
+            </Card.Body>
+          </Card>
+        ))
+      ) : (
+        <p>No tasks to display</p>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ViewCurrentTasks
+export default ViewCurrentTasks;
